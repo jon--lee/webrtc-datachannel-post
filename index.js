@@ -34,5 +34,17 @@ io.on('connection', function(socket){
         else {
             socket.emit('full', room);
         }
-    });    
+    });
+    socket.on('candidate', function(candidate){
+        socket.broadcast.emit('candidate', candidate);
+    });
+    
+    socket.on('offer', function(offer){
+        console.log('relaying offer');
+        socket.broadcast.emit('offer', offer);
+    });
+    socket.on('answer', function(answer){
+        console.log('relaying answer');
+        socket.broadcast.emit('answer', answer);
+    });
 });
